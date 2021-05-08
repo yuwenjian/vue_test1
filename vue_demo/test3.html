@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试3</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@next"></script>
+
+	<style>
+		.class1{
+ 		 background: #444;
+  		color: #eee;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="id1">
+    	<p>1. 测试 v-once标签，使用这个标签后值不会变化，如下：</p>
+    	<span v-once style="color: #CC3344"> 值不会改变：{{message}}  </span>   
+
+    </div>
+    <br>
+	<div id="id2">
+	   
+	    <P>2. 使用v-html标签可以将html的代码显示出，如下：</P> 
+	    <p>使用v-html标签样式：<span v-html="rawhtml"></span></p>
+
+	</div>
+
+<br>
+	<div id="id3">
+	    <P>3. 使用v-bind标签可以绑定属性，如下：</P> 
+        <label for="r1">修改颜色</label>
+        <input type="checkbox" v-model="use" id="r1">
+  		<br><br>
+  		<div v-bind:class="{'class1': use}">
+   			 v-bind:class 指令{{ use }}
+  		</div>
+	</div>
+<br>
+<div id="id4">
+      <P>4. 使用v-if标签可以进行判断，如下：</P> 
+      <label for="lab1"></label>
+      <input type="checkbox" v-model="seent" id="lab1"></input>
+
+      <p v-if="seent">seen如果是 {{seent}} ,你就看到我</p>
+  </div>
+<br>
+  <div id="id5">
+      <P>5. 使用v-for标签可以遍历数据，如下：</P> 
+      
+      <ol>
+        <li v-for="sit in sits">
+          {{ sit.name }}
+        </li>
+      </ol>
+  </div>
+
+  <br>
+  <div id="id6">
+      <P>6. 使用v-on指令绑定事件，如下：</P> 
+      <p>{{ message}}</p>
+
+      <input type="button" v-on:click="rawMessage" value="点击反转">
+  </div>
+
+
+<br>
+  <div id="id7">
+      <P>7. 使用v-if  v-else-if  v-else 条件指令使用，如下：</P> 
+
+      <p v-if="message === 'A'"> 输出A</p>
+      <p v-else-if="message === 'B'"> 输出B</p>
+      <p v-else-if="message === 'C'"> 输出C</p>
+      <p v-else>不是A/B/C</p>
+
+  </div>
+
+  <br>
+  <div id="id8">
+      <P>8. 使用v-show指令判断是否显示，如下：</P> 
+
+      <P v-show="isShow">判断是否显示</P>
+
+  </div>
+
+
+	
+    <script type="text/javascript">
+    	const app = Vue.createApp({
+    		data(){
+    			return{
+    				message: "这是最原先的值"
+    			}
+    		},
+    		methods:{
+              updataMessage(){
+
+              	this.message = "这是第二个值"
+              }
+
+    		}
+    	}).mount("#id1");
+
+       app.updataMessage();
+
+
+
+       const app2 = Vue.createApp({
+       	data(){
+       		return{
+       			rawhtml: '<span style="color: red">这是显示的是红色的文字</span>'
+       		}
+       	}
+       }).mount("#id2")
+
+
+
+       const app3 = Vue.createApp({
+       	data(){
+       		return{
+       			use: false,
+       		}
+       	}
+       }).mount("#id3")
+
+
+       const app4 = Vue.createApp({
+        data(){
+          return {
+            seent: false
+          }
+        }
+
+       }).mount("#id4")
+
+
+       const app5 = Vue.createApp({
+        data(){
+          return {
+            sits: [
+              { name: 'Google' },
+              { name: 'Runoob' },
+              { name: 'Taobao' }
+            ]
+          }
+        }
+       }).mount("#id5")
+
+
+
+       const app6 =Vue.createApp({
+        data(){
+          return{
+            message: "yuwenjian"
+          }
+        },
+        methods:{
+          rawMessage(){
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+       }).mount("#id6")
+
+
+
+       const app7 = Vue.createApp({
+        data(){
+          return {
+            message: "B"
+          }
+        }
+       }).mount("#id7")
+
+
+       const app8 = Vue.createApp({
+        data(){
+          return {
+            isShow: true
+          }
+        }
+       }).mount("#id8")
+       
+    	
+
+    </script>
+</body>
+</html>

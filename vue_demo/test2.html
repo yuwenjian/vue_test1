@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试实例——2</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="id1">
+    	{{ cond }}
+    </div>
+
+    <script>
+     const app = {
+      data(){
+       return{
+         cond: 10
+   }
+  },
+  // 添加一个addconds()
+  methods: {      
+  	addConds(){
+  		this.cond++
+  	}
+  }
+ }
+
+ const hello = Vue.createApp(app).mount("#id1")
+
+ document.write(hello.$data.cond)  // 调用app对象中的data方法然后调用其中的属性
+ document.write("<br>")
+ document.write(hello.cond)    // 直接使用hello对象调用其中的cond属性
+
+ hello.cond =20   // 直接修改cond的值
+ document.write("<br>")
+
+ document.write(hello.cond)
+
+ hello.addConds()   // 调用addConds()方法
+ document.write("<br>")
+ document.write(hello.$data.cond)
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试4-Vue 组件</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+   <div id="id1">
+      <!-- 使用自定义的组件 -->
+   	   <my_template></my_template>
+   </div>
+
+    <div id="id2">
+      <!-- 使用自定义的组件 -->
+   	   <my_button></my_button>
+   </div>
+
+<br>
+   <div id="id3">
+      <!-- 使用自定义的组件 -->
+   	   <run_btn></run_btn>
+   </div>
+
+
+   <br>
+   <div id="id4">
+   	   </b><p>动态设置prop</p>
+      <!-- 使用自定义的组件 -->
+   	   <site_btn v-for="site in sites" :id="site.id" :name="site.name"> 
+   	   </site_btn>
+   </div>
+
+  
+  <script type="text/javascript">
+  	
+    const app = Vue.createApp({})
+ 
+
+    // 定义一个名为 my_template 的新全局组件
+    app.component("my_template", {
+    	template: "<span> 这是自定义组件</span>"
+    })
+
+    app.mount("#id1")
+
+
+    const app1 = Vue.createApp({})
+
+
+
+// 自定义一个button，每次点击count加1，记住要加上 ··符号
+    app1.component('my_button', {
+    	data(){
+    		return{
+    			count: 1
+    		}
+    	},
+    	template: `<button @click="count++">点了 {{ count }}次  </button>`
+    })
+	app1.mount("#id2")
+
+    
+
+    var ButtonA = {
+    	template: `<h1> 这是自定义的button </h1>`
+    }
+
+    const app2 = Vue.createApp({
+    	components: {
+           'run_btn': ButtonA
+    	}
+    })
+    app2.mount("#id3")
+
+
+
+
+    const app3 = Vue.createApp({
+    	data(){
+    		return{
+               sites: [
+               		{id:1, name: "小明"},
+               		{id:2, name: "小红"},
+               		{id:3, name: "小芳"}
+               ]
+
+    		}
+    	}
+    })
+     
+     app3.component("site_btn", {
+         props: ["id", "name"],
+         template: `<p>{{id}}-{{name}}</p>`
+
+     })
+
+     app3.mount("#id4")
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+</html>
